@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
+
+    <title>Open Library API</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="container-fluid top">
+        <div class="row" id="header">
+            <h1 class="top-bar">
+                Book R Us
+            </h1>
+        </div>
+
+    </div>
+
+
+    <!-- Search -->
+    <div class="container-fluid Search" id="page-container">
+        <div class="col">
+            <input id="input1" placeholder="Enter Book Title">
+            <div class="inner-col">
+                <select id="selectType">
+                    <option value="byTitle">By Title</option>
+                    <option value="byISBN">By ISBN</option>
+                </select>
+                <button onClick="getBooks1()">Search</button>
+            </div>
+        </div>
+
+        <div class="card-deck" id="main-output" style="display:none">
+            <div class="card border-1 mb-3 mx-auto"
+                style="overflow-y: scroll; max-height:60vh; max-width: 25rem; padding: 5px;">
+                <div style="display:flex; justify-content: space-between;">
+                    <p>Results</p>
+                    <p id="totalCount"></p>
+                </div>
+                <div id="output1"> </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- display book-->
+    <div class="container-fluid" id="bookdetails-container" style="display:none">
+        <div class="book-details-box">
+            <h2 id="book-title" style="text-align: left;"></h2>
+            <h5 id="book-author"></h5>
+            <div class="flex-books">
+                <img id="book-cover" alt="No cover" />
+                <div>
+                    <p>Publisher(Year)</p>
+                    <p id="publish-year"></p>
+                    <p>ISBN</p>
+                    <p id="book-isbn"></p>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="flex-books"><button class="flex-books" id="view-details" type="button">View full details</button></div>
+        </div>
+    </div>
+
+    </div>
+    <!-- Footer -->
+    <footer class="container-fluid" id="footer">
+    </footer>
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>
