@@ -34,10 +34,9 @@
                     <option value="byTitle">By Title</option>
                     <option value="byISBN">By ISBN</option>
                 </select>
-                <button onClick="getBooks1()">Search</button>
+                <button id="search-btn" onClick="getBooksList()">Search</button>
             </div>
         </div>
-
         <div class="card-deck" id="main-output" style="display:none">
             <div class="card border-1 mb-3 mx-auto"
                 style="overflow-y: scroll; max-height:60vh; max-width: 25rem; padding: 5px;">
@@ -45,7 +44,7 @@
                     <p>Results</p>
                     <p id="totalCount"></p>
                 </div>
-                <div id="output1"> </div>
+                <div id="outputList"> </div>
             </div>
         </div>
     </div>
@@ -64,7 +63,6 @@
                     <p id="book-isbn"></p>
                 </div>
             </div>
-            <br />
             <br />
             <div class="flex-books"><button class="flex-books" id="view-details" type="button">View full details</button></div>
         </div>
