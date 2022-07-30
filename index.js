@@ -33,7 +33,7 @@ function getBooks1() {
             totalCount.innerText = "(1-10 of " + response.numFound +")"; 
             for (var i = 0; i < 10; i++) {
                 document.getElementById("output1").innerHTML +=
-                    "<div class=\"book\" style=\"padding:3px\">"+
+                    "<div class=\"book\" style=\"cursor:pointer; margin:1px\" onClick=\"getBookDetailsEngine("+ (response.docs[i].isbn? response.docs[i].isbn[0] : undefined)+")\">"+
                     "<p>Title: &nbsp" + response.docs[i].title +
                     "</p> <div style=\"display:flex; min-width:100%;\"><p> Year: &nbsp" + (response.docs.publish_year? (!Array.isArray(response.docs[i].publish_year)? response.docs[i].publish_year : response.docs[i].publish_year.sort().reverse()[0]) : "Not Mentioned") +
                     "</p>&nbsp;&nbsp;&nbsp;&nbsp; <p>ISBN: &nbsp;" + (response.docs[i].isbn? response.docs[i].isbn[0] : "No ISBN")  +
@@ -42,10 +42,16 @@ function getBooks1() {
         });
 }
 
-
-function getBooks2() {
-
-    fetch("https://openlibrary.org/api/books?bibkeys=ISBN:" + document.getElementById("input1").value + "&jscmd=data&format=json")
+function getBookDetailsEngine(isbn)
+{
+    if(!isbn)
+    {
+        alert("Invalid ISBN");
+        return;
+    }
+        
+    
+        fetch("https://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json")
         .then(a => a.json())
         .then(response => {
             if(Object.keys(response).length === 0)
@@ -55,8 +61,9 @@ function getBooks2() {
             }
                 
             console.log(response);
-            data = response? response["ISBN:"+document.getElementById("input1").value] : {};
+            data = response? response["ISBN:"+isbn] : {};
             document.getElementById("bookdetails-container").style.display="block";
+            document.getElementById("back-button").style.display="block";
             document.getElementById("page-container").style.display="none";
             document.getElementById('book-title').innerText = data.title;
             document.getElementById('book-author').innerText = data.authors[0].name;
@@ -64,5 +71,15 @@ function getBooks2() {
             document.getElementById('publish-year').innerText = data.publish_date;
             document.getElementById('book-isbn').innerText = document.getElementById("input1").value;
             document.getElementById("view-details").onClick = "window.open('"+data.url+"','_blank');";
-        });
+    });
+}
+
+function getBooks2() {
+    return getBookDetailsEngine(document.getElementById("input1").value);
+}
+
+function goBack() {
+    document.getElementById("bookdetails-container").style.display="none";
+    document.getElementById("page-container").style.display="block";
+    document.getElementById("back-button").style.display="none";
 }

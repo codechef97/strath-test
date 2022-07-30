@@ -9,18 +9,17 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
-
     <title>Open Library API</title>
 </head>
 
 <body>
     <!-- Header -->
     <div class="container-fluid top">
-        <div class="row" id="header">
+        <div class="row" id="header" style="display: flex; flex-direction: column;">
             <h1 class="top-bar">
                 Book R Us
             </h1>
+            <a id="back-button" style="display:none; color: white; cursor:pointer;" onClick="goBack()"> < Back</a>
         </div>
 
     </div>
@@ -51,7 +50,7 @@
         </div>
     </div>
 
-    <!-- display book-->
+    <!-- display book details-->
     <div class="container-fluid" id="bookdetails-container" style="display:none">
         <div class="book-details-box">
             <h2 id="book-title" style="text-align: left;"></h2>
